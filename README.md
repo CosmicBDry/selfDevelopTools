@@ -3,12 +3,12 @@ sqlbuild构建器示例：
 1.导入依赖包
 
 	import (
-
-	...
+		"database/sql"
+		"fmt"
 	
-	"github.com/CosmicBDry/selfDevelopTools/sqlbuild" ///导入sql语句构建包
+		"github.com/CosmicBDry/selfDevelopTools/sqlbuild" ///导入sql语句构建包
 	
-    ...
+   		 _ "github.com/go-sql-driver/mysql"
 	
 	)
 
@@ -43,7 +43,7 @@ sqlbuild构建器示例：
   
       	rows.Scan(&var1,&var2,...)
       
-     	 fmt.Printf("%v %v...\n",var1,var2,...)
+     	fmt.Printf("%v %v...\n",var1,var2,...)
       
      	 ...
       
