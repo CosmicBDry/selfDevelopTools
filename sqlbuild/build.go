@@ -14,14 +14,14 @@ type Builder struct {
 	orderbyMethod string
 	orderStmt     []string
 }
-
+//newy一个构建器对象
 func NewBuidler(sqlQuery string) *Builder {
 	return &Builder{
 		base:          sqlQuery,
 		orderbyMethod: "desc",
 	}
 }
-
+//where语句构建器
 func (b *Builder) Where(ColumnName, OperatorMethod string, Value interface{}) *Builder {
 	ColumnName = strings.TrimSpace(ColumnName)
 	OperatorMethod = strings.TrimSpace(OperatorMethod)
@@ -42,7 +42,7 @@ func (b *Builder) Where(ColumnName, OperatorMethod string, Value interface{}) *B
 	}
 	return b
 }
-
+//orderby排序构建器
 func (b *Builder) OrderBy(Method string, ColumnName ...string) *Builder {
 	if strings.TrimSpace(Method) != "" {
 		b.orderbyMethod = Method
@@ -52,7 +52,7 @@ func (b *Builder) OrderBy(Method string, ColumnName ...string) *Builder {
 	}
 	return b
 }
-
+//limit、offset翻页构建器
 func (b *Builder) Limit(Offset, Limit uint64) *Builder {
 	if Limit > 0 {
 		OffsetStr := strconv.FormatUint(Offset, 10)
@@ -61,7 +61,7 @@ func (b *Builder) Limit(Offset, Limit uint64) *Builder {
 	}
 	return b
 }
-
+//将以上构建器对象合成sql查询语句
 func (b *Builder) BuildQuery() string {
 	if b.base == "" {
 		fmt.Println("no sql intput")
