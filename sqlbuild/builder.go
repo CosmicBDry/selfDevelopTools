@@ -13,6 +13,7 @@ type Builder struct {
 	limitStmt     []string
 	orderbyMethod string
 	orderStmt     []string
+	joinStmt      string
 }
 
 //new一个构建器对象
@@ -64,4 +65,13 @@ func (b *Builder) Limit(Offset, Limit uint64) *Builder {
 		b.limitStmt = append(b.limitStmt, "limit", OffsetStr+","+limitStr)
 	}
 	return b
+}
+
+//构建count语句，直接返回一个sql语句
+func (b *Builder) BuildCountStmt() string {
+	if len(b.joinStmt) > 0 {
+
+		return "SELECT COUNT(*) FROM " + "(" + b.joinStmt + ")" + " AS T"
+	}
+	return ""
 }

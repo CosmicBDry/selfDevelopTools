@@ -11,6 +11,7 @@ func (b *Builder) BuildQuery() string {
 		fmt.Println("no sqlTemplate input")
 		return ""
 	}
-	return strings.TrimSpace(b.base + " " + strings.Join(b.whereStmt, " ") +
+	b.joinStmt = strings.TrimSpace(b.base + " " + strings.Join(b.whereStmt, " ") +
 		" " + strings.Join(b.orderStmt, " ") + " " + strings.Join(b.limitStmt, " "))
+	return b.joinStmt
 }
